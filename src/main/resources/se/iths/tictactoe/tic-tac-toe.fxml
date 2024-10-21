@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="se.iths.tictactoe.controller.TicTacToeController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.tictactoe.controller.TicTacToeController">
+    <Text style="-fx-font-size: 24;" text="Tic Tac Toe" />
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <GridPane alignment="CENTER" depthTest="DISABLE" hgap="10" prefHeight="320.0" prefWidth="103.0" vgap="10">
+        <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button fx:id="button2" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Button fx:id="button3" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Button fx:id="button4" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="button5" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <Label fx:id="statusLabel" text="Väntar på spelare..." />
 </VBox>
