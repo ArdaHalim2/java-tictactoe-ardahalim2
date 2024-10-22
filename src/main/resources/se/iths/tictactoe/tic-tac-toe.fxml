@@ -8,15 +8,15 @@
     <Text style="-fx-font-size: 24;" text="Tic Tac Toe" />
     <Label fx:id="scoreLabel" text="Spelare: 0 | AI: 0" textAlignment="CENTER" />
     <GridPane alignment="CENTER" depthTest="DISABLE" hgap="10" prefHeight="320.0" prefWidth="103.0" vgap="10">
-        <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Button fx:id="button2" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Button fx:id="button3" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Button fx:id="button4" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Button fx:id="button5" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button fx:id="button2" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Button fx:id="button3" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Button fx:id="button4" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Button fx:id="button5" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />
