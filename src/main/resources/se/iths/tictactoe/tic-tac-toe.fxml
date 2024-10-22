@@ -6,7 +6,7 @@
 
 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.tictactoe.controller.TicTacToeController">
     <Text style="-fx-font-size: 24;" text="Tic Tac Toe" />
-
+    <Label fx:id="scoreLabel" text="Spelare: 0 | AI: 0" textAlignment="CENTER" />
     <GridPane alignment="CENTER" depthTest="DISABLE" hgap="10" prefHeight="320.0" prefWidth="103.0" vgap="10">
         <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -27,7 +27,7 @@
          <RowConstraints />
          <RowConstraints />
       </rowConstraints>
-    </GridPane>
+     </GridPane>
 
     <Label fx:id="statusLabel" text="Väntar på spelare..." />
 </VBox>
