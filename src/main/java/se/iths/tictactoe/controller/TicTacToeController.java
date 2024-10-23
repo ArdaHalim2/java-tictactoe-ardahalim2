@@ -9,18 +9,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class TicTacToeController {
-    private TicTacToe game; // Spel-logik
-    private AI ai; // AI motståndare
-    private Button[] buttons; // Knappar för spelbrädet
-    private int playerScore = 0; // Spelarens poäng
-    private int aiScore = 0; // AI:s poäng
+    private TicTacToe game;
+    private AI ai;
+    private Button[] buttons;
+    private int playerScore = 0;
+    private int aiScore = 0;
 
     @FXML
-    private Label statusLabel; // Label för att visa status
+    private Label statusLabel;
     @FXML
-    private Label scoreLabel; // Label för att visa poängställning
+    private Label scoreLabel;
     @FXML
-    private Button button0, button1, button2, button3, button4, button5, button6, button7, button8; // Knappar för spelbrädet
+    private Button button0, button1, button2, button3, button4, button5, button6, button7, button8;
 
     @FXML
     public void initialize() {
@@ -41,32 +41,44 @@ public class TicTacToeController {
         Button clickedButton = (Button) event.getSource();
         int position = Integer.parseInt(clickedButton.getId().replace("button", ""));
 
+        // Kontrollera om spelaren kan göra sitt drag
         if (game.makeMove(position, 'X')) {  // Spelaren gör sitt drag
-            clickedButton.setText("X");
+            clickedButton.setText("X"); // Uppdatera knappens text till "X"
 
-            if (game.checkWin()) {  // Kontrollera om spelaren vunnit
+            // Kontrollera om spelaren har vunnit
+            if (game.checkWin()) {
                 showAlert("Du vann!");
                 updateScore('X');
                 resetBoard();
                 return;
-            } else if (game.isBoardFull()) {  // Kontrollera oavgjort
-                showAlert("Spelet är oavgjort!");
-                resetBoard();
-                return;
             }
 
-            ai.makeAIMove(game);  // Låt AI:n göra sitt drag
-            updateBoard();  // Uppdatera brädet med AI:s drag
+            // Kontrollera om brädet är fullt (oavgjort)
+            if (game.isBoardFull()) {
+                showAlert("Spelet är oavgjort!");
+                resetBoard(); // Återställ brädet
+                return;
+            }
+            // AI:n gör sitt drag
+            ai.makeAIMove(game);
+            updateBoard();
 
-            if (game.checkWin()) {  // Kontrollera om AI:n vann
+            // Kontrollera om AI:n har vunnit
+            if (game.checkWin()) {
                 showAlert("AI:n vann!");
                 updateScore('O');
                 resetBoard();
                 return;
-            } else if (game.isBoardFull()) {  // Kontrollera oavgjort efter AI:s drag
+            }
+
+            // Kontrollera om brädet är fullt efter AI:s drag (oavgjort)
+            if (game.isBoardFull()) {
                 showAlert("Spelet är oavgjort!");
                 resetBoard();
             }
+        } else {
+            // Om draget var ogiltigt kan vi ge feedback till spelaren (valfritt)
+            System.out.println("Ogiltigt drag av spelaren på position: " + position);
         }
     }
 

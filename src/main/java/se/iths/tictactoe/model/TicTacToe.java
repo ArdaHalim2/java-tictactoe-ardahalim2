@@ -1,13 +1,15 @@
 
 package se.iths.tictactoe.model;
 
+import java.util.Arrays;
+
 public class TicTacToe {
-    private char[] board; // Spelbrädet
+    private final char[] board; // Spelbrädet
     private char lastPlayer; // Senaste spelaren
 
     public TicTacToe() {
-        board = new char[9];  // 9 positioner i brädet
-        reset();  // Initiera med tomt bräde
+        board = new char[9];
+        reset();
     }
 
     // Gör ett drag på en viss position för en viss spelare
@@ -20,24 +22,25 @@ public class TicTacToe {
         return false;
     }
 
-    // Kontrollera om någon har vunnit
     public boolean checkWin() {
-        // Kontrollera alla vinnande kombinationer
-        int[][] winningCombinations = {
-                {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // Rader
-                {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // Kolumner
-                {0, 4, 8}, {2, 4, 6} // Diagonaler
+        char[] board = getBoard();
+        // Vinnande kombinationer
+        int[][] winConditions = {
+                {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // Horisontella
+                {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // Vertikala
+                {0, 4, 8}, {2, 4, 6}             // Diagonaler
         };
 
-        for (int[] combo : winningCombinations) {
-            if (board[combo[0]] == lastPlayer &&
-                    board[combo[0]] == board[combo[1]] &&
-                    board[combo[1]] == board[combo[2]]) {
-                return true; // Vinst om alla tre matchar
+        for (int[] condition : winConditions) {
+            if (board[condition[0]] != '-' &&
+                    board[condition[0]] == board[condition[1]] &&
+                    board[condition[1]] == board[condition[2]]) {
+                return true; // En vinnande kombination hittad
             }
         }
-        return false;
+        return false; // Ingen vinnande kombination hittad
     }
+
 
     // Kontrollera om brädet är fullt (oavgjort)
     public boolean isBoardFull() {
@@ -56,9 +59,15 @@ public class TicTacToe {
 
     // Återställ brädet
     public void reset() {
-        for (int i = 0; i < board.length; i++) {
-            board[i] = '-';
-        }
+        Arrays.fill(board, '-');
         lastPlayer = ' ';
+    }
+
+    public char getLastPlayer() {
+        return lastPlayer;
+    }
+
+    public void setLastPlayer(char lastPlayer) {
+        this.lastPlayer = lastPlayer;
     }
 }

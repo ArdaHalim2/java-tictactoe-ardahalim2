@@ -1,7 +1,7 @@
 package se.iths.tictactoe.model;
 
 public class Player {
-    private final char symbol; // Spelarens symbol
+    private final char symbol;
 
     public Player(char symbol) {
         this.symbol = symbol;
