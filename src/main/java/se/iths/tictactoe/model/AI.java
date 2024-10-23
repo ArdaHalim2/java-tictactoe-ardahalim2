@@ -1,63 +1,43 @@
-
 package se.iths.tictactoe.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class AI extends Player {
     public AI() {
         super('O'); // AI:s symbol är alltid O
     }
 
-    //AI metod
-    public int getBestMove(TicTacToe game) {
-        int bestScore = Integer.MIN_VALUE; // Bästa poäng
-        int move = -1; // Håll plats för bästa drag
+    // Gör ett drag för AI baserat på strategier
+    public void makeAIMove(TicTacToe game) {
+        char[] board = game.getBoard();
 
-        for (int i = 0; i < 9; i++) {
-            if (game.getBoard()[i] == '-') { // Om rutan är tom
-                game.makeMove(i); // Gör drag
-                int score = minimax(game, 0, false); // Beräkna poäng
-                game.getBoard()[i] = '-'; // Återställ draget
-                if (score > bestScore) { // Om poängen är bättre
-                    bestScore = score; // Uppdatera bästa poäng
-                    move = i; // Spara bästa drag
+        // Försök att blockera spelarens vinnande drag
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == '-') {
+                board[i] = 'X';  // Temporärt lägg X för att simulera spelarens drag
+                if (game.checkWin()) {
+                    board[i] = 'O';  // Blockera spelarens vinnande drag
+                    return;
                 }
+                board[i] = '-';  // Återställ brädet
             }
         }
-        return move; // Returnera bästa drag
-    }
 
-    // Minimax-algoritm
-    private int minimax(TicTacToe game, int depth, boolean isMaximizing) {
-        // Kontrollera om någon vunnit
-        if (game.checkWin()) {
-            return isMaximizing ? -1 : 1; // Vinstpoäng
-        }
-        if (game.isBoardFull()) {
-            return 0; // Oavgjort
+        // Om ingen blockering behövs, gör ett slumpmässigt drag
+        List<Integer> availablePositions = new ArrayList<>();
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == '-') {
+                availablePositions.add(i);  // Samla alla lediga positioner
+            }
         }
 
-        if (isMaximizing) {
-            int bestScore = Integer.MIN_VALUE;
-            for (int i = 0; i < 9; i++) {
-                if (game.getBoard()[i] == '-') {
-                    game.makeMove(i);
-                    int score = minimax(game, depth + 1, false);
-                    game.getBoard()[i] = '-'; // Återställ draget
-                    bestScore = Math.max(score, bestScore);
-                }
-            }
-            return bestScore;
-        } else {
-            int bestScore = Integer.MAX_VALUE;
-            for (int i = 0; i < 9; i++) {
-                if (game.getBoard()[i] == '-') {
-                    game.makeMove(i);
-                    int score = minimax(game, depth + 1, true);
-                    game.getBoard()[i] = '-'; // Återställ draget
-                    bestScore = Math.min(score, bestScore);
-                }
-            }
-            return bestScore;
+        if (!availablePositions.isEmpty()) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(availablePositions.size());
+            int position = availablePositions.get(randomIndex);
+            board[position] = 'O';  // AI gör sitt drag
         }
     }
-
 }
