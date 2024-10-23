@@ -2,22 +2,55 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.tictactoe.controller.TicTacToeController">
-    <Text style="-fx-font-size: 24;" text="Tic Tac Toe" />
-    <Label fx:id="scoreLabel" text="Spelare: 0 | AI: 0" textAlignment="CENTER" />
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.tictactoe.controller.TicTacToeController">
+    <Text stroke="TRANSPARENT" style="-fx-font-size: 24;" text="Tic Tac Toe" textAlignment="CENTER">
+        <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+                <stops>
+                    <Stop>
+                        <color>
+                            <Color red="1.0"/>
+                        </color>
+                    </Stop>
+                    <Stop offset="1.0">
+                        <color>
+                            <Color red="0.18333333730697632" blue="1.0"/>
+                        </color>
+                    </Stop>
+                </stops>
+            </LinearGradient>
+        </fill>
+        <font>
+            <Font name="System Bold" size="12.0"/>
+        </font>
+    </Text>
+    <Label fx:id="scoreLabel" text="Spelare: 0 | AI: 0" textAlignment="CENTER"/>
     <GridPane alignment="CENTER" depthTest="DISABLE" hgap="10" prefHeight="320.0" prefWidth="103.0" vgap="10">
-        <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Button fx:id="button2" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-        <Button fx:id="button3" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Button fx:id="button4" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Button fx:id="button5" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-     </GridPane>
+        <Button fx:id="button0" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Button fx:id="button1" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Button fx:id="button2" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-    <Label fx:id="statusLabel" text="Väntar på spelare..." />
+        <Button fx:id="button3" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Button fx:id="button4" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Button fx:id="button5" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+        <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER"
+                GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+    </GridPane>
+
+    <Label fx:id="statusLabel" text="Väntar på spelare..."/>
 </VBox>
