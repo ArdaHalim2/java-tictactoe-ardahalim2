@@ -17,16 +17,6 @@
         <Button fx:id="button6" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" />
         <Button fx:id="button7" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button fx:id="button8" minHeight="100" minWidth="100" onAction="#handleButtonClick" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <columnConstraints>
-         <ColumnConstraints />
-         <ColumnConstraints />
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-         <RowConstraints />
-         <RowConstraints />
-      </rowConstraints>
      </GridPane>
 
     <Label fx:id="statusLabel" text="Väntar på spelare..." />
