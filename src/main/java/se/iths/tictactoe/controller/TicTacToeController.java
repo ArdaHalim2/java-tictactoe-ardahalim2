@@ -8,7 +8,6 @@ import se.iths.tictactoe.model.TicTacToe;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
 public class TicTacToeController {
     private TicTacToe game; // Spel-logik
     private AI ai; // AI motståndare
@@ -25,79 +24,79 @@ public class TicTacToeController {
 
     @FXML
     public void initialize() {
-        // Initiera spelet
-        game = new TicTacToe();
-        ai = new AI();
+        game = new TicTacToe(); // Initiera spelet
+        ai = new AI(); // Initiera AI:n
         buttons = new Button[]{button0, button1, button2, button3, button4, button5, button6, button7, button8};
+        updateScoreLabel(); // Uppdatera poängen från början
 
         // Ställ in minsta storlek för knappar
         for (Button button : buttons) {
             button.setMinSize(100, 100);
         }
-
-        updateScoreLabel(); // Uppdatera poängen från början
     }
 
-    // Hantera knappklick
+    // Hantera knappklick från spelaren
     @FXML
     private void handleButtonClick(javafx.event.ActionEvent event) {
-        Button clickedButton = (Button) event.getSource(); // Hämta knappen som klickades
-        int position = Integer.parseInt(clickedButton.getId().replace("button", "")); // Hämta position
+        Button clickedButton = (Button) event.getSource();
+        int position = Integer.parseInt(clickedButton.getId().replace("button", ""));
 
-        if (game.makeMove(position)) { // Om draget lyckas
-            clickedButton.setText(String.valueOf(game.getCurrentPlayer().getSymbol())); // Sätt knapptext
+        if (game.makeMove(position, 'X')) {  // Spelaren gör sitt drag
+            clickedButton.setText("X");
 
-            // Kontrollera vinst eller oavgjort
-            if (game.checkWin()) {
-                showAlert("Du vann!"); // Visa vem som vann
-                updateScore(game.getCurrentPlayer().getSymbol()); // Uppdatera poäng för vinnaren
-                resetBoard(); // Återställ brädet för nästa match
+            if (game.checkWin()) {  // Kontrollera om spelaren vunnit
+                showAlert("Du vann!");
+                updateScore('X');
+                resetBoard();
                 return;
-            } else if (game.isBoardFull()) {
+            } else if (game.isBoardFull()) {  // Kontrollera oavgjort
                 showAlert("Spelet är oavgjort!");
-                resetBoard(); // Återställ brädet för nästa match
+                resetBoard();
                 return;
             }
 
-            game.switchPlayer(); // Byt spelare
-            // Låt AI göra sitt drag
-            int aiMove = ai.getBestMove(game);
-            game.makeMove(aiMove); // AI gör sitt drag
-            buttons[aiMove].setText(String.valueOf(ai.getSymbol())); // Uppdatera knapptext för AI
+            ai.makeAIMove(game);  // Låt AI:n göra sitt drag
+            updateBoard();  // Uppdatera brädet med AI:s drag
 
-            // Kontrollera vinst eller oavgjort efter AI:s drag
-            if (game.checkWin()) {
-                showAlert("AI:n vann!"); // Visa vem som vann
-                updateScore(ai.getSymbol()); // Uppdatera poäng för AI
-                resetBoard(); // Återställ brädet för nästa match
+            if (game.checkWin()) {  // Kontrollera om AI:n vann
+                showAlert("AI:n vann!");
+                updateScore('O');
+                resetBoard();
                 return;
-            } else if (game.isBoardFull()) {
+            } else if (game.isBoardFull()) {  // Kontrollera oavgjort efter AI:s drag
                 showAlert("Spelet är oavgjort!");
-                resetBoard(); // Återställ brädet för nästa match
-                return;
+                resetBoard();
             }
-
-            game.switchPlayer(); // Byt tillbaka till spelaren
         }
     }
 
-    // Visar en Alert med resultatet
+    // Uppdatera knapparna på brädet efter AI:s drag
+    private void updateBoard() {
+        char[] board = game.getBoard();
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == 'O') {
+                buttons[i].setText("O");
+            }
+        }
+    }
+
+    // Visa ett meddelande när spelet är klart
     private void showAlert(String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Spelresultat");
         alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.showAndWait(); // Vänta tills användaren stänger fönstret
+        alert.showAndWait();
     }
 
-    // Uppdatera poäng för vinnaren
+    // Uppdatera poäng för spelaren och AI:n
     private void updateScore(char winner) {
         if (winner == 'X') {
-            playerScore++; // Spelaren vinner
+            playerScore++;
         } else {
-            aiScore++; // AI vinner
+            aiScore++;
         }
-        updateScoreLabel(); // Uppdatera poängvisning
+        updateScoreLabel();
     }
 
     // Uppdatera poängvisning på skärmen
@@ -105,13 +104,12 @@ public class TicTacToeController {
         scoreLabel.setText("Spelare: " + playerScore + " | AI: " + aiScore);
     }
 
-    // Återställ brädet efter en match
+    // Återställ spelbrädet för en ny match
     private void resetBoard() {
-        game.reset(); // Återställ spelets tillstånd
+        game.reset();
         for (Button button : buttons) {
             button.setText("");
-            button.setDisable(false);// Rensa alla knapptexter
         }
-        statusLabel.setText("Ny match påbörjad!"); // Statusmeddelande för ny match
+        statusLabel.setText("Ny match påbörjad!");
     }
 }
