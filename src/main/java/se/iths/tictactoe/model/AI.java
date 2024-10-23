@@ -13,10 +13,21 @@ public class AI extends Player {
     public void makeAIMove(TicTacToe game) {
         char[] board = game.getBoard();
 
-        // Försök att blockera spelarens vinnande drag
+        // Försök att vinna
         for (int i = 0; i < board.length; i++) {
             if (board[i] == '-') {
-                board[i] = 'X';  // Temporärt lägg X för att simulera spelarens drag
+                board[i] = 'O';  // Lägger temporärt O för att simulera AI:s drag
+                if (game.checkWin()) {
+                    return;
+                }
+                board[i] = '-';  // Återställ brädet
+            }
+        }
+
+        // Blockera spelarens vinnande drag
+        for (int i = 0; i < board.length; i++) {
+            if (board[i] == '-') {
+                board[i] = 'X';  // Lägger temporärt X för att simulera spelarens drag
                 if (game.checkWin()) {
                     board[i] = 'O';  // Blockera spelarens vinnande drag
                     return;
