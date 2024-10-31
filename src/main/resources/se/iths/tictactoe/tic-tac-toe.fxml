@@ -5,7 +5,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.12"
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="300.0" spacing="10" xmlns="http://javafx.com/javafx/17.0.6"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.iths.tictactoe.controller.TicTacToeController">
     <Text stroke="TRANSPARENT" style="-fx-font-size: 24;" text="Tic Tac Toe" textAlignment="CENTER">
         <fill>
