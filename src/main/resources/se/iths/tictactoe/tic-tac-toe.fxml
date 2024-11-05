@@ -52,5 +52,4 @@
                 GridPane.columnIndex="2" GridPane.rowIndex="2"/>
     </GridPane>
 
-    <Label fx:id="statusLabel" text="Väntar på spelare..."/>
 </VBox>
